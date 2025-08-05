@@ -1,4 +1,4 @@
-# 🎵 Online Music Streaming Platform (Microservices Architecture)
+# 🎵 Online Music(Microservices Architecture)
 
 Một nền tảng nghe nhạc trực tuyến được xây dựng theo kiến trúc Microservice, giúp người dùng trải nghiệm nghe nhạc mượt mà, tìm kiếm bài hát, tạo playlist cá nhân, và nhiều tính năng hấp dẫn khác.
 
