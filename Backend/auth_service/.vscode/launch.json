@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MusicWebApplication<music_web>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "microservice.music_web.MusicWebApplication",
+            "projectName": "music_web",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
