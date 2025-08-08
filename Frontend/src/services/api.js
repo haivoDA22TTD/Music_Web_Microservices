@@ -1,4 +1,3 @@
-// src/services/api.js
 import axios from "axios";
 
 // Lấy token từ localStorage để dùng chung
@@ -28,11 +27,24 @@ export const deleteProduct = (id) =>
     headers: getAuthHeader(),
   }).then(r => r.data);
 
-// Upload ảnh và trả về { imageUrl: "url" }
+// Upload ảnh chung (cũ)
 export const uploadImage = (file) => {
   const formData = new FormData();
   formData.append("image", file);
   return axios.post("http://localhost:8083/api/upload", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      ...getAuthHeader(),
+    },
+  }).then(r => r.data);
+};
+
+// Upload avatar riêng cho backend NestJS port 3000
+export const uploadAvatar = (file) => {
+  const formData = new FormData();
+  formData.append("avatar", file); // field name trùng backend
+
+  return axios.post("http://localhost:3000/avatar/upload", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
       ...getAuthHeader(),
