@@ -1,10 +1,13 @@
 const db = require('../config/db.config.js');
 
-const MusicFile = {
-    save: (filename, filepath, callback) => {
-        const sql = 'INSERT INTO music_files (filename, filepath) VALUES (?, ?)';
-        db.query(sql, [filename, filepath], callback);
+const Song = {
+    save: (filename, poster, song_name, id_singer, filepath, callback) => {
+        const sql = `
+            INSERT INTO songs (filename, poster, song_name, id_singer, filepath)
+            VALUES (?, ?, ?, ?, ?)
+        `;
+        db.query(sql, [filename, poster, song_name, id_singer, filepath], callback);
     },
 };
 
-module.exports = MusicFile;
+module.exports = Song;
