@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('./config/db.config');
 const uploadRoutes = require('./routes/uploadRoutes.routes.js');
+const songRoutes = require('./routes/songRoutes.routes.js');
 const path = require('path');
 
 const app = express();
@@ -13,8 +14,11 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello from Music Service!');
 });
+
+app.use('/api', songRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api', uploadRoutes);
+
 
 // Lắng nghe cổng
 app.listen(port, () => {
