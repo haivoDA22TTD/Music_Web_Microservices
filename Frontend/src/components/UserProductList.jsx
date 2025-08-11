@@ -1,39 +1,72 @@
-import React, { useEffect, useState } from "react";
-import { fetchProducts } from "../services/api";
-import ProductCard from "./ProductCard";
+import React, { useEffect, useState, useContext } from "react";
+import { AuthContext } from "./AuthContext";
 
 export default function UserProductList() {
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const { token } = useContext(AuthContext);
+  const [songs, setSongs] = useState([]);
 
+  // Lấy danh sách bài hát từ Music Service
   useEffect(() => {
-    fetchProducts().then(setProducts);
+    async function fetchSongs() {
+      try {
+        const res = await fetch("http://localhost:5000/api/songs");
+        const data = await res.json();
+        if (res.ok) {
+          setSongs(data);
+        }
+      } catch (err) {
+        console.error("Lỗi lấy danh sách bài hát", err);
+      }
+    }
+    fetchSongs();
   }, []);
 
-  const handleAddToCart = (product) => {
-    setCart((prev) => [...prev, product]);
-    alert(`Đã thêm ${product.name} vào giỏ hàng`);
+  // Lưu lịch sử nghe nhạc
+  const handlePlaySong = async (songId) => {
+    try {
+      const res = await fetch("http://localhost:8082/api/history/add", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ songId }),
+      });
+
+      if (res.ok) {
+        alert("Bắt đầu nghe nhạc và lưu vào lịch sử");
+      } else {
+        console.error("Không lưu được lịch sử nghe nhạc");
+      }
+    } catch (err) {
+      console.error("Lỗi khi gọi API History Service", err);
+    }
   };
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Danh sách xe máy</h2>
+      <h2 className="text-2xl font-bold mb-4">Danh sách bài hát</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {products.map((p) => (
-          <ProductCard key={p.id} product={p} onAddToCart={handleAddToCart} />
+        {songs.map((song) => (
+          <div
+            key={song.id}
+            className="border rounded-lg p-4 flex flex-col items-center shadow-sm"
+          >
+            <img
+              src={song.poster}
+              alt={song.songName}
+              className="w-32 h-32 object-cover mb-2 rounded-md"
+            />
+            <h3 className="text-lg font-semibold">{song.songName}</h3>
+            <p className="text-gray-500 text-sm mb-2">ID: {song.id}</p>
+            <button
+              onClick={() => handlePlaySong(song.id)}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-auto"
+            >
+              Nghe
+            </button>
+          </div>
         ))}
-      </div>
-
-      <div className="mt-8">
-        <h3 className="text-xl font-semibold">Giỏ hàng ({cart.length})</h3>
-        {cart.length === 0 && <p>Giỏ hàng trống</p>}
-        <ul>
-          {cart.map((item, i) => (
-            <li key={i}>
-              {item.name} - ${item.price}
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );
