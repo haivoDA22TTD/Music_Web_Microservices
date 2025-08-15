@@ -9,6 +9,36 @@
             "projectName": "microservice-music_web",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-HistoryApplication<history>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "music_web.history.HistoryApplication",
+            "projectName": "history",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MusicWebApplication<microservices-music_web>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "microservices.music_web.MusicWebApplication",
+            "projectName": "microservices-music_web",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MusicWebApplication<music_web>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "microservice.music_web.MusicWebApplication",
+            "projectName": "music_web",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
