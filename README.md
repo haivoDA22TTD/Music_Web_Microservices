@@ -30,6 +30,17 @@ Một nền tảng nghe nhạc trực tuyến được xây dựng theo kiến t
 
 ---
 
+  ## 🔌 Port của các Service
+
+| Tên Service           | Công nghệ sử dụng | Port mặc định |
+|-----------------------|-------------------|---------------|
+| Frontend (UI)         | React Vite        | `5173`        |
+| Managerment Music Service | Node.js | `5001 |
+| Auth Service          | Spring Boot       | `8081`        |
+| User Service          | NestJS            | `3000`        |
+| Music Service         | Node js           | `5000`        |
+| Listening History Service| Spring Boot    | `8082`        |
+| Eureka Server         |    Spring Boot    | `8761`        |
 ## ⚙️ Kiến trúc hệ thống
 
 Ứng dụng được thiết kế theo kiến trúc **Microservices** giúp dễ dàng mở rộng, bảo trì và phát triển độc lập từng module.
