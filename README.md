@@ -26,6 +26,7 @@ Một nền tảng nghe nhạc trực tuyến được xây dựng theo kiến t
 - ⏱ Lịch sử nghe nhạc gần đây
 - 🧠 Gợi ý bài hát theo sở thích
 - 📱 Responsive UI cho cả desktop và mobile
+- 🌙 Hỗ trợ Dark Mode: Giao diện nền tối giúp bảo vệ mắt và tiết kiệm pin.
 
 ---
 
